@@ -11,13 +11,13 @@ from parallel.ControlVRTL   import ControlVRTL
 from parallel.ParallelVRTL  import ParallelVRTL
 
 def test_controlsmall( cmdline_opts):
-#   run_test_vector_sim( ControlVRTL(1, 2),[       #tests function of control block for 1 input two registers
-#     ( ' recv_val   send_rdy   send_val*   recv_rdy*   dsel* '),  
-#     [   0x00,       0x00,       0x00,       0x01,       0x00   ],  
-#     [   0x01,       0x00,       0x00,       0x01,       0x00   ],  
-#     [   0x01,       0x00,       0x00,       0x01,       0x01   ],  
-#     [   0x01,       0x00,       0x01,       0x00,       0x02   ],
-# ],cmdline_opts)
+   run_test_vector_sim( ControlVRTL(1, 2),[       #tests function of control block for 1 input two registers
+     ( ' recv_val   send_rdy   send_val*   recv_rdy*   dsel* '),  
+     [   0x00,       0x00,       0x00,       0x01,       0x00   ],  
+     [   0x01,       0x00,       0x00,       0x01,       0x00   ],  
+     [   0x01,       0x00,       0x00,       0x01,       0x01   ],  
+     [   0x01,       0x00,       0x01,       0x00,       0x02   ],
+ ],cmdline_opts)
 
 
 # def test_parallel( cmdline_opts):

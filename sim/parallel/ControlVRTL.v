@@ -1,7 +1,7 @@
 module ControlVRTL 
 #(
     parameter dib = 1, //#decoder input lines
-    parameter dobreg = 1 << dib //#decoder output lines
+    parameter dobreg = 1  //#decoder output lines
 )(
     input   logic recv_val,
     input   logic send_rdy,
