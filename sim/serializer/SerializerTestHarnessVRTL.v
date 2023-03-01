@@ -1,5 +1,5 @@
 
-`include "./SerializerVRTL.v"
+`include "../../../C2S2-SERDES/sim/serializer/SerializerVRTL.v"
 
 module SerializerTestHarnessVRTL
     #(
@@ -29,7 +29,7 @@ module SerializerTestHarnessVRTL
         end
     end
 
-    SerializerVRTL #( .BIT_WIDTH(BIT_WIDTH), .N_SAMPLES(N_SAMPLES)) comb_fft
+    SerializerVRTL #( .BIT_WIDTH(BIT_WIDTH), .N_SAMPLES(N_SAMPLES)) serializer
     (
         .recv_msg(recv_msg_intermediate),
         .recv_val(recv_val),
