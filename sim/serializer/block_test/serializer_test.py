@@ -62,11 +62,31 @@ def eight_point():
     return [0x0000000100000002000000030000000400000005000000060000000700000008, 
             0x00000008, 0x00000007, 0x00000006, 0x00000005, 0x00000004, 0x00000003, 0x00000002, 0x00000001]
 
+def eight_point_two_packet():
+    return [0x0000000100000002000000030000000400000005000000060000000700000008, 
+            0x00000008, 0x00000007, 0x00000006, 0x00000005, 0x00000004, 0x00000003, 0x00000002, 0x00000001,
+            0x0000000800000007000000060000000500000004000000030000000200000001, 
+            0x00000001, 0x00000002, 0x00000003, 0x00000004, 0x00000005, 0x00000006, 0x00000007, 0x00000008]
+
 test_case_table = mk_test_case_table([
   (                                   "msgs                                       src_delay sink_delay BIT_WIDTH N_SAMPLES"),
   [ "eight_point",                     eight_point,                               0,        0,         32,       8         ],
+  [ "eight_point_two_packet",          eight_point_two_packet,                    0,        0,         32,       8         ],
 
 ])
+
+def separate_transactions(array, N_SAMPLES, input = True):
+  
+  if(input): 
+    return array[0::N_SAMPLES + 1]
+
+  newarray = []
+  if (not input): 
+    for i in range(1, len(array)):
+      if(i % (N_SAMPLES + 1) != 0):
+        newarray.append(array[i])
+    return newarray
+  
 
 #-------------------------------------------------------------------------
 # TestHarness
@@ -80,12 +100,12 @@ def test( test_params, cmdline_opts ):
   msgs = test_params.msgs()
 
   th.set_param("top.src.construct",
-    msgs=[msgs[0]],
+    msgs=separate_transactions(msgs,test_params.N_SAMPLES,True),
     initial_delay=test_params.src_delay+3,
     interval_delay=test_params.src_delay )
 
   th.set_param("top.sink.construct",
-    msgs=msgs[1:],
+    msgs=separate_transactions(msgs,test_params.N_SAMPLES,False),
     initial_delay=test_params.sink_delay+3,
     interval_delay=test_params.sink_delay )
 

@@ -69,7 +69,7 @@ module SerializerControl
     logic next_state;
     logic state;
 
-    logic [$clog2(N_SAMPLES) - 1:0] mux_sel_next;
+    logic [$clog2(N_SAMPLES):0] mux_sel_next;
 
     always @(*) begin
         case(state)
