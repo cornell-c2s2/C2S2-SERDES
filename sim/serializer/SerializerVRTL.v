@@ -1,6 +1,6 @@
 
 
-`include "../../../C2S2-SERDES/sim/serializer/RegisterV_Reset.v"
+`include "../../../C2S2-Module-Library/lib/sim/nbitregister/RegisterV_Reset.v"
 
 module SerializerVRTL
    #(

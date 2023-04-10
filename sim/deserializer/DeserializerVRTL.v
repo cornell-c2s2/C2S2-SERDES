@@ -1,3 +1,4 @@
+`include "../../../C2S2-Module-Library/lib/sim/nbitregister/RegisterV_Reset.v"
 module ControlVRTL 
 #(
     parameter N_SAMPLES = 8
@@ -103,26 +104,6 @@ module DecoderVRTL #(
 	always @(*) out = {{1 << BIT_WIDTH - 1 {1'b0}}, 1'b1} << in;
 endmodule
 
-module RegisterV
-	#(parameter BIT_WIDTH  = 32)
-	(clk, reset, w, d, q);
-    input logic clk;
-    input logic reset;
-    input  logic w;
-    input logic [BIT_WIDTH-1:0] d;
-    output logic [BIT_WIDTH-1:0] q;
-    logic [BIT_WIDTH-1:0] regout;
-
-    assign q = regout;
-
-    always @(posedge clk) begin
-	if (reset)
-	    regout <= 0;
-	else if (w)
-	    regout <= d;
-    end
-endmodule
-
 module DeserializerVRTL
 #(
     parameter N_SAMPLES = 8,
@@ -161,7 +142,7 @@ module DeserializerVRTL
     generate
         genvar i;
         for( i = 0; i < N_SAMPLES; i++) begin
-            RegisterV #( .BIT_WIDTH(BIT_WIDTH) ) register ( .clk(clk), .reset(reset), .w(en_sel[i]), .d(recv_msg), .q(send_msg[i]) );
+            RegisterV_Reset #( .N(BIT_WIDTH) ) register ( .clk(clk), .reset(reset), .w(en_sel[i]), .d(recv_msg), .q(send_msg[i]) );
         end
     endgenerate
 
