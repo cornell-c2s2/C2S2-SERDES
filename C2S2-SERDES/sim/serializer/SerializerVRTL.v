@@ -62,9 +62,9 @@ module SerializerControl
         input logic                            reset
     );
 
-    localparam INIT  = 0;
-    localparam OUTPUT_START = 1;
-    localparam ADD   = 2;
+    parameter INIT  = 0;
+    parameter OUTPUT_START = 1;
+    parameter ADD   = 2;
 
     logic next_state;
     logic state;
@@ -111,11 +111,7 @@ module SerializerControl
     end
 
     always @(posedge clk) begin
-        if(reset) begin
-            state <= INIT;
-        end else begin
-            mux_sel <= mux_sel_next;
-            state   <= next_state;
-        end
+        mux_sel <= mux_sel_next;
+        state   <= next_state;
     end
 endmodule
