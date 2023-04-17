@@ -14,9 +14,9 @@ module ControlVRTL
     input   logic reset,
     input   logic clk
 );
-    parameter [1:0] INIT =   2'b00;
-    parameter [1:0] STATE1 = 2'b01;
-    parameter [1:0] STATE2 = 2'b10; 
+    localparam [1:0] INIT =   2'b00;
+    localparam [1:0] STATE1 = 2'b01;
+    localparam [1:0] STATE2 = 2'b10; 
 
     logic [$clog2(N_SAMPLES) + 1:0] count; //counter
     logic [$clog2(N_SAMPLES) + 1:0] count_next;
@@ -103,6 +103,8 @@ module DecoderVRTL #(
 	always @(*) out = {{1 << BIT_WIDTH - 1 {1'b0}}, 1'b1} << in;
 endmodule
 
+`ifndef REGISTER_V
+`define REGISTER_V
 module RegisterV
 	#(parameter BIT_WIDTH  = 32)
 	(clk, reset, w, d, q);
@@ -122,6 +124,8 @@ module RegisterV
 	    regout <= d;
     end
 endmodule
+
+`endif
 
 module DeserializerVRTL
 #(
