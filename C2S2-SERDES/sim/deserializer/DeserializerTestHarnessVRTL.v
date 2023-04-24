@@ -24,11 +24,11 @@ module DeserializerTestHarnessVRTL
         int i;
         for(i = 0; i < N_SAMPLES; i = i + 1) begin
 
-            send_msg   [BIT_WIDTH * i +: BIT_WIDTH] = send_msg_intermediate [i][BIT_WIDTH - 1:0];// send_msg   [4 * i +: 4] = send_msg_intermediate [i][4 - 1:0];//
+            send_msg   [BIT_WIDTH * i +: BIT_WIDTH] = send_msg_intermediate [i][BIT_WIDTH - 1:0];
         end
     end
 
-    DeserializerVRTL #(.N_SAMPLES(N_SAMPLES),  .BIT_WIDTH(BIT_WIDTH)) deserializer 
+    DeserializerVRTL #(.N_SAMPLES(N_SAMPLES), .BIT_WIDTH(BIT_WIDTH)) deserializer
     (
         .recv_msg(recv_msg),
         .recv_val(recv_val),

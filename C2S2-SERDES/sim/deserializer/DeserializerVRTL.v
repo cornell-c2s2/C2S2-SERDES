@@ -15,9 +15,9 @@ module ControlVRTL
     input   logic reset,
     input   logic clk
 );
-    parameter [1:0] INIT =   2'b00;
-    parameter [1:0] STATE1 = 2'b01;
-    parameter [1:0] STATE2 = 2'b10; 
+    localparam [1:0] INIT =   2'b00;
+    localparam [1:0] STATE1 = 2'b01;
+    localparam [1:0] STATE2 = 2'b10; 
 
     logic [$clog2(N_SAMPLES) + 1:0] count; //counter
     logic [$clog2(N_SAMPLES) + 1:0] count_next;
