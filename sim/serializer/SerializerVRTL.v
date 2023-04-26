@@ -1,6 +1,6 @@
 
 
-`include "../../../C2S2-Module-Library/lib/sim/nbitregister/RegisterV_Reset.v"
+`include "../../../C2S2-SERDES/sim/vc/regs.v"
 
 module SerializerVRTL
    #(
@@ -29,7 +29,7 @@ module SerializerVRTL
     generate
         genvar i;
         for( i = 0; i < N_SAMPLES; i++) begin
-            RegisterV_Reset #( .N(BIT_WIDTH) ) register ( .clk(clk), .reset(reset), .w(reg_en), .d(recv_msg[i]), .q(reg_out[i]) );
+            vc_EnResetReg #( .p_nbits(BIT_WIDTH) ) register ( .clk(clk), .reset(reset), .en(reg_en), .d(recv_msg[i]), .q(reg_out[i]) );
         end
     endgenerate
 
